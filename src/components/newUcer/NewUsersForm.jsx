@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { addForm } from "../../features/user/userSlice";
+import { addForm, openModal } from "../../features/user/userSlice";
 import { useDispatch } from "react-redux";
 import "./NewUsersForm.css";
 import { v4 as uuidv4 } from "uuid";
@@ -85,7 +85,12 @@ function NewUsersForm() {
               </label>
             </div>
 
-            <button className="modal-btn">submit</button>
+            <button
+             
+              className="modal-btn"
+            >
+              submit
+            </button>
           </form>
         </div>
       </div>

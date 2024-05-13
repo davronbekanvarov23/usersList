@@ -4,17 +4,23 @@ import NewUsersForm from "./components/newUcer/NewUsersForm";
 //components
 import Navbar from "./components/navbar/Navbar";
 import Footer from "./components/footer/Footer";
-import { useState } from "react";
+import { openModal, closeModal } from "./features/user/userSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 function App() {
-  const [showmodal, setShowmodal] = useState(false);
+  const dispatch = useDispatch();
+  const { isOpen } = useSelector((store) => store.user);
 
-  const closeModal = (e) => {
-    if (e.target.className === "overlay") setShowmodal(false);
-    if (e.key === "Escape") setShowmodal(false);
-  };
   return (
-    <div onClick={closeModal} onKeyDown={closeModal} className="App">
+    <div
+      onClick={(e) => {
+        if (e.target.className === "overlay") dispatch(closeModal());
+      }}
+      onKeyDown={(e) => {
+        if (e.key === "Escape") dispatch(closeModal());
+      }}
+      className="App"
+    >
       <Navbar />
 
       <main>
@@ -23,8 +29,8 @@ function App() {
         </div> */}
         <List />
       </main>
-      {showmodal && <NewUsersForm />}
-      <button onClick={() => setShowmodal(true)} className="create-user">
+      {isOpen && <NewUsersForm />}
+      <button onClick={() => dispatch(openModal())} className="create-user">
         Create User
       </button>
       <Footer />
