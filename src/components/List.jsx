@@ -22,7 +22,7 @@ function List() {
                 <p>Davlat: {user.Davlat}</p>
                 <p>Kasb: {user.Kasb}</p>
                 <p>Gender: {user.Male}</p>
-                <p>{value}</p>
+
                 <button
                   onClick={() => {
                     dispatch(dalateForm(user.id));

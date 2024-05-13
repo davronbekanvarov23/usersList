@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 function App() {
   const dispatch = useDispatch();
   const { isOpen } = useSelector((store) => store.user);
-
+  const { value } = useSelector((state) => state.user);
   return (
     <div
       onClick={(e) => {
@@ -24,9 +24,7 @@ function App() {
       <Navbar />
 
       <main>
-        {/* <div className="no-users">
-          {users.length === 0 && <h2>No Users</h2>}
-        </div> */}
+        <div className="no-users">{value === 0 && <h2>No Users</h2>}</div>
         <List />
       </main>
       {isOpen && <NewUsersForm />}
