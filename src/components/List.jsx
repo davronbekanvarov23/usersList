@@ -1,19 +1,39 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import "./userlist/usersList.css";
+import { dalateForm } from "../features/user/userSlice";
+import { useDispatch } from "react-redux";
 
 function List() {
+  const dispatch = useDispatch();
+
   const { users } = useSelector((state) => state.user);
   return (
-    <div>
-      {users.map((user) => {
-        return (
-          <div>
-            <h1>Ism:{user.Ism}</h1>
-            <h1>Familiya:{user.Familiya}</h1>
-            <h1>Davlat:{user.Davlat}</h1>
-          </div>
-        );
-      })}
+    <div className="userList">
+      <div className="userList-container container">
+        {users.map((user) => {
+          return (
+            <div className="card" key={user.id}>
+              <div className="card-inner">
+                <img src={user.Rasm} height={150} width={150} />
+                <h3>
+                  {user.Ism} {user.Familiya} ,{user.Yosh}
+                </h3>
+                <p>Davlat: {user.Davlat}</p>
+                <p>Kasb: {user.Kasb}</p>
+                <p>Gender: {user.Male}</p>
+                <button
+                  onClick={() => {
+                    dispatch(dalateForm(user.id));
+                  }}
+                >
+                  Dalete{" "}
+                </button>
+              </div>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }

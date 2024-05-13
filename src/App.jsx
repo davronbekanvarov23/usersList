@@ -1,45 +1,32 @@
-import { useDispatch } from "react-redux";
-import { addForm } from "./features/user/userSlice";
-import { useRef, useState } from "react";
 import List from "./components/List";
 import "./App.css";
+import NewUsersForm from "./components/newUcer/NewUsersForm";
 //components
 import Navbar from "./components/navbar/Navbar";
 import Footer from "./components/footer/Footer";
+import { useState } from "react";
 
 function App() {
-  const [users,setUsers]=useState([])
+  const [showmodal, setShowmodal] = useState(false);
 
-
-  const dispatch = useDispatch();
-  const ismRef = useRef();
-  const familiyaRef = useRef();
-  const davlatRef = useRef();
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const newObj = {
-      Ism: ismRef.current.value,
-      Familiya: familiyaRef.current.value,
-      Davlat: davlatRef.current.value,
-    };
-    dispatch(addForm(newObj));
+  const closeModal = (e) => {
+    if (e.target.className === "overlay") setShowmodal(false);
+    if (e.key === "Escape") setShowmodal(false);
   };
-
   return (
-    <div className="App">
-      <Navbar usersLength={users.length} />
+    <div onClick={closeModal} onKeyDown={closeModal} className="App">
+      <Navbar />
 
       <main>
-        {" "}
-        <form onSubmit={handleSubmit}>
-          <input ref={ismRef} type="text" />
-          <input ref={familiyaRef} type="text" />
-          <input ref={davlatRef} type="text" />
-          <button>submit</button>
-        </form>
+        {/* <div className="no-users">
+          {users.length === 0 && <h2>No Users</h2>}
+        </div> */}
         <List />
       </main>
+      {showmodal && <NewUsersForm />}
+      <button onClick={() => setShowmodal(true)} className="create-user">
+        Create User
+      </button>
       <Footer />
     </div>
   );

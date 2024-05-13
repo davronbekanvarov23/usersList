@@ -4,7 +4,7 @@ const initialState = {
   users: [],
 };
 
-export const userSlice = createSlice({
+export const userSlice = createSlice({ 
   name: "user",
   initialState,
   reducers: {
@@ -12,11 +12,11 @@ export const userSlice = createSlice({
       state.users.push(payload);
     },
     dalateForm: (state, { payload }) => {
-      state.users=state.users.filter((user) => user.id === payload);
+      state.users=state.users.filter((user) => user.id !== payload);
     },
   },
 });
 
-export const { addForm } = userSlice.actions;
+export const { addForm,dalateForm } = userSlice.actions;
 
 export default userSlice.reducer;
