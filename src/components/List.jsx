@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 
 function List() {
   const dispatch = useDispatch();
-
+  const { value } = useSelector((state) => state.user);
   const { users } = useSelector((state) => state.user);
   return (
     <div className="userList">
@@ -22,6 +22,7 @@ function List() {
                 <p>Davlat: {user.Davlat}</p>
                 <p>Kasb: {user.Kasb}</p>
                 <p>Gender: {user.Male}</p>
+                <p>{value}</p>
                 <button
                   onClick={() => {
                     dispatch(dalateForm(user.id));

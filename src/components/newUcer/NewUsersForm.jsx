@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { addForm, openModal } from "../../features/user/userSlice";
+import { addForm } from "../../features/user/userSlice";
 import { useDispatch } from "react-redux";
 import "./NewUsersForm.css";
 import { v4 as uuidv4 } from "uuid";
